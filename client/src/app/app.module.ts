@@ -1,21 +1,31 @@
-import { HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { UploadComponent } from './components/upload/upload.component';
+import { ViewImageComponent } from './components/view-image/view-image.component';
 import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UploadComponent,
+    ViewImageComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpClientModule,ReactiveFormsModule,MaterialModule
+    AppRoutingModule,
+    MaterialModule,
+    ReactiveFormsModule,
   ],
-  providers: [provideHttpClient(withInterceptorsFromDi()), provideAnimationsAsync()],
+  providers: [
+    provideHttpClient(withInterceptorsFromDi()),
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

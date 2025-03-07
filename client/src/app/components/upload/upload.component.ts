@@ -1,7 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { FileuploadService } from '../../fileupload.service';
+import { City } from '../../model';
+import { CityStore } from '../../store/city.store';
 
 @Component({
   selector: 'app-upload',
@@ -16,9 +19,21 @@ export class UploadComponent implements OnInit{
   private router = inject(Router);
   private fb = inject(FormBuilder);
   private fileUploadSvc = inject(FileuploadService);
+  private cityStore = inject(CityStore);
+
+
+  citiesList$ !: Observable<City[]>;
+  selectedCity !: string;
+  selectedCityName ?: string;
   
   ngOnInit(): void {
     this.createForm();
+    this.loadCities();
+  }
+
+  loadCities(){
+    this.citiesList$ = this.cityStore.cities$;
+    this.cityStore.loadCities();
   }
 
   upload(){

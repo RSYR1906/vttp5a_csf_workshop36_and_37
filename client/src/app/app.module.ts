@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { ViewImageComponent } from './components/view-image/view-image.component';
 import { MaterialModule } from './material.module';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MaterialModule } from './material.module';
     AppRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),
